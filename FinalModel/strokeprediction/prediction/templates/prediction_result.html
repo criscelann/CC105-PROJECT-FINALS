@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+ body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .result-box {
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+        .risk {
+            color: #dc3545;
+        }
+        .no-risk {
+            color: #28a745;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }    </style>
+</head>
+<body>
+    <h1>Stroke Prediction Result</h1>
+    
+    <div class="result-box">
+        {% if prediction == "At risk of stroke" %}
+            <p>Your result: <strong class="risk">{{ prediction }}</strong></p>
+            <p>Please consult with a healthcare professional for further evaluation.</p>
+        {% else %}
+            <p>Your result: <strong class="no-risk">{{ prediction }}</strong></p>
+            <p>Continue maintaining a healthy lifestyle.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!-- templates/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stroke Prediction App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            text-align: center;
+        }
+        a.button {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+        a.button:hover {
+            background-color: #0056b3;
+        }
+        .auth-links {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Welcome to the Stroke Prediction App</h1>
+    <p>This app uses machine learning to assess stroke risk based on user health inputs.</p>
+
+    {% if user.is_authenticated %}
+        <p>Hello, {{ user.username }}!</p>
+        <a href="{% url 'prediction' %}" class="button">Make a Prediction</a>
+        <a href="{% url 'dashboard' %}" class="button">View Dashboard</a>
+        <a href="{% url 'logout' %}" class="button">Logout</a>
+    {% else %}
+        <div class="auth-links">
+            <a href="{% url 'login' %}" class="button">Login</a>
+            <a href="{% url 'register' %}" class="button">Register</a>
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        .stats {
+            margin-bottom: 20px;
+        }
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .stat p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dashboard</h2>
+        <div class="stats">
+            <div class="stat">
+                <p>Total Patients</p>
+                <p>{{ total_patients }}</p>
+            </div>
+            <div class="stat">
+                <p>Stroke Cases</p>
+                <p>{{ strokes }}</p>
+            </div>
+        </div>
+
+        <!-- Patients Table -->
+        <h3>Patients List</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Hypertension</th>
+                    <th>Heart Disease</th>
+                    <th>Ever Married</th>
+                    <th>Work Type</th>
+                    <th>Residence Type</th>
+                    <th>Avg Glucose Level</th>
+                    <th>BMI</th>
+                    <th>Smoking Status</th>
+                    <th>Prediction</th>
+                    <!-- <th>Created At</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in predictionresult %}
+                <tr>
+                    <td>{{ patient.gender|yesno:"Female,Male" }}</td>
+                    <td>{{ patient.age }}</td>
+                    <td>{{ patient.hypertension|yesno:"Yes,No" }}</td>
+                    <td>{{ patient.heart_disease|yesno:"Yes,No" }}</td>
+                    <td>{{ patient.ever_married|yesno:"Yes,No" }}</td>
+                    <td>{{ patient.work_type }}</td>
+                    <td>{{ patient.residence_type }}</td>
+                    <td>{{ patient.avg_glucose_level }}</td>
+                    <td>{{ patient.bmi }}</td>
+                    <td>{{ patient.smoking_status }}</td>
+                    <td>{{ patient.prediction}}</td>
+                    <!-- <td>{{ patient.created_at }}</td> -->
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="12">No patients available</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            
+        </table>
+    </div>
+</body>
+</html>
